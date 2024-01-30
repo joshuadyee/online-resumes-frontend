@@ -3,10 +3,22 @@
   background-color:antiquewhite;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+.section {
+  min-height: 100vh; /* Make each section fill the viewport height */
+  /* Additional styling for each section */
+}
 
 
 
 /******************************* CARDS ***********************/
+
+.cards-row {
+  padding: 0 50px 0 50px;
+}
 
 .my-4 h1 {
   font-size: 100px;
@@ -104,4 +116,26 @@ body, html {
   line-height: 1.2;
   margin: 40px 0;
   font-weight: bold
+}
+
+
+
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login {
+  padding-top: 50px;
+  text-align: center;
+}
+
+.input-group {
+  margin-bottom: 10px;
+}
+
+label {
+  margin-right: 10px;
 }
