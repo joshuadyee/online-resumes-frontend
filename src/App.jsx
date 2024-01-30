@@ -46,10 +46,25 @@ function App() {
       </div>
     </Router>
   );
+};
+
+function App() {
+  return (
+    <div className="App">
+      <NavBar/>
+      <LandingPage />
+      <Cards />
+    </div>
+  );
 }
+
 export default App;
 
 
-
-
-
+/* <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/cards" element={<Cards resumes={resumes} />} />
+        // </Routes>
+      // </BrowserRouter> */
