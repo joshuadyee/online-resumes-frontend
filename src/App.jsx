@@ -33,7 +33,7 @@ function App() {
         <LandingPage />
         <Cards />
         <Routes>
-          <Route path="/" element={<LandingPage/>} />
+
           {/* <Route path="/all-resumes" element={<AllResumes />} /> */}
           {/* <Route path="/selected-resume" element={<SelectedResume />} /> */}
           {/* <Route path="/student/:studentId" element={<PublicResume />} /> */}
