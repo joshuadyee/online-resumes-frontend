@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Profile from "./Profile";
+// import Profile from "./Profile";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 // import { Home } from "./Home"
@@ -40,14 +40,14 @@ function App() {
           {/* <Route path="/students" element={<StudentDetails/>} /> */}
           <Route path="/students" element={<StudentsIndex students={students} />} />
           <Route path="/students/:id" element={<StudentDetails/>} />
-          <Route path="/profile/:studentId" element={<Profile />} />
+          {/* <Route path="/profile/:studentId" element={<Profile />} /> */}
        
         
         </Routes>
       </div>
     </Router>
   );
-};
+}
 
 
 

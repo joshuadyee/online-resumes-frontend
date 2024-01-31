@@ -1,5 +1,10 @@
-import React from "react";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
+
+// ... (existing imports)
 
 export function StudentsIndex({ students }) {
   const navigate = useNavigate();
@@ -21,12 +26,34 @@ export function StudentsIndex({ students }) {
   );
 }
 
+StudentsIndex.propTypes = {
+  students: PropTypes.array.isRequired,
+};
 
-export function StudentSkillsIndex({skills}) {
+export function StudentSkillsIndex() {
+  const { id } = useParams();
+  const [student, setStudent] = useState([]);
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/students/${id}.json`)
+      .then(response => {
+        console.log("loading skills information");
+        setStudent(response.data);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the skills data', error);
+      });
+  });
+
+  // Check if student.skills is defined before mapping over it
+  if (!student.skills) {
+    return <div>Loading skills...</div>;
+  }
+
   return (
     <div>
       <h2>Skills</h2>
-      {skills.map((skill, index) => (
+      {student.skills.map((skill, index) => (
         <div key={index}>
           <p>{skill.name}</p>
         </div>
@@ -34,6 +61,10 @@ export function StudentSkillsIndex({skills}) {
     </div>
   );
 }
+
+StudentSkillsIndex.propTypes = {
+  skills: PropTypes.array.isRequired,
+};
 
 export function ExperienceIndex({ experiences }) {
   return (
@@ -48,6 +79,10 @@ export function ExperienceIndex({ experiences }) {
     </div>
   );
 }
+
+ExperienceIndex.propTypes = {
+  experiences: PropTypes.array.isRequired,
+};
 
 export function EducationIndex({ educations }) {
   return (
@@ -64,18 +99,33 @@ export function EducationIndex({ educations }) {
   );
 }
 
-export function StudentsShow(props) {
+EducationIndex.propTypes = {
+  educations: PropTypes.array.isRequired,
+};
+
+export function StudentsShow({ student }) {
   return (
     <div>
-    <h1>{props.student.first_name} {props.student.last_name}</h1>
-  
-    <h2>{props.student.email} | {props.student.phone_number} | etc...</h2>
-    <h3>Bio</h3>
-    <p>{props.student.bio}</p>
-    <h3>Skills</h3>
-    <p>{props.student.skills}</p>
-    <h3>etc...</h3>
-    <p>etc... placeholder</p>
-  </div>
+      <h1>{student.first_name} {student.last_name}</h1>
+      <h2>{student.email} | {student.phone_number} | etc...</h2>
+      <h3>Bio</h3>
+      <p>{student.bio}</p>
+      <h3>Skills</h3>
+      <p>{student.skills}</p>
+      <h3>etc...</h3>
+      <p>etc... placeholder</p>
+    </div>
   );
 }
+
+StudentsShow.propTypes = {
+  student: PropTypes.shape({
+    first_name: PropTypes.string.isRequired,
+    last_name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    phone_number: PropTypes.string.isRequired,
+    bio: PropTypes.string.isRequired,
+    skills: PropTypes.array.isRequired,
+    // ... (add more prop types for other fields)
+  }).isRequired,
+};

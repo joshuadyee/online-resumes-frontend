@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function Profile({ studentId }) {
@@ -9,23 +9,23 @@ function Profile({ studentId }) {
     const fetchStudentData = async () => {
       try {
         // Fetch student data
-        const studentResponse = await axios.get(`http://localhost:3000/students/${studentId}`);
+        const studentResponse = await axios.get(`http://localhost:3000/students/${studentId}.json`);
         const student = studentResponse.data;
         
         // Fetch student skills
-        const skillsResponse = await axios.get(`http://localhost:3000/students/${studentId}/skills`);
+        const skillsResponse = await axios.get(`http://localhost:3000/students/${studentId}/skills.json`);
         const skills = skillsResponse.data;
 
         // Fetch student experiences
-        const experiencesResponse = await axios.get(`http://localhost:3000/students/${studentId}/experiences`);
+        const experiencesResponse = await axios.get(`http://localhost:3000/students/${studentId}/experiences.json`);
         const experiences = experiencesResponse.data;
 
         // Fetch student educations
-        const educationsResponse = await axios.get(`http://localhost:3000/students/${studentId}/educations`);
+        const educationsResponse = await axios.get(`http://localhost:3000/students/${studentId}/educations.json`);
         const educations = educationsResponse.data;
 
         // Fetch student capstones
-        const capstonesResponse = await axios.get(`http://localhost:3000/students/${studentId}/capstones`);
+        const capstonesResponse = await axios.get(`http://localhost:3000/students/${studentId}/capstones.json`);
         const capstones = capstonesResponse.data;
 
         setStudentData({ student, skills, experiences, educations, capstones });
